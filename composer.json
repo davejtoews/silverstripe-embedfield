@@ -1,0 +1,22 @@
+{
+	"name": "nathancox/embedfield",
+	"description": "A form field for adding oembed objects (primarily videos) to pages or dataobjects",
+	"type": "silverstripe-module",
+	"homepage": "https://github.com/nathancox/silverstripe-mapfield",
+	"keywords": ["silverstripe", "oembed", "video", "cms", "formfield"],
+	"license": "BSD-3-Clause",
+	"authors": [
+		{"name": "Nathan Cox","email": "me@nathan.net.nz"}
+	],
+	"support": {
+		"issues": "https://github.com/nathancox/silverstripe-embedfield/issues"
+	},
+	"require": {
+		"silverstripe/framework": "~3.1"
+	},
+	"extra": {
+		"screenshots": [
+			"http://static.flyingmonkey.co.nz/github/silverstripe-embedfield/embedfield-1.png"
+		]
+	}
+}
