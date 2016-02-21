@@ -31,12 +31,12 @@ Make a has_one relationship to an EmbedObject then create an EmbedField in getCM
 
 ```php
 class Page extends SiteTree {
-	
+
 	// has one video
 	static $has_one = array(
 	  'Video' => 'EmbedObject'
 	);
-	
+
 	function getCMSFields() {
 		$fields = parent::getCMSFields();
 
@@ -49,7 +49,7 @@ class Page extends SiteTree {
 
 		return $fields;
 	}
-	
+
 }
 ```
 
