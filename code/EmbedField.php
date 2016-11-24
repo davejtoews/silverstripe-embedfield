@@ -12,10 +12,10 @@ class EmbedField extends FormField {
 	protected $object;
 
 	/**
-	 * 
-	 * @param string $name  
-	 * @param string $title 
-	 * @param string $value 
+	 *
+	 * @param string $name
+	 * @param string $title
+	 * @param string $value
 	 */
 	public function __construct($name, $title = null, $value = null) {
 		parent::__construct($name, $title, $value);
@@ -32,7 +32,7 @@ class EmbedField extends FormField {
 	public function FieldHolder($properties = array()) {
 		Requirements::javascript('embedfield/javascript/EmbedField.js');
 		Requirements::css('embedfield/css/EmbedField.css');
-		
+
 		if (!$this->object || $this->object->ID == 0) {
 			$this->object = EmbedObject::create();
 		}
@@ -75,13 +75,13 @@ class EmbedField extends FormField {
 
 	public function saveInto(DataObjectInterface $record) {
 		$val = $this->Value();		// array[sourceurl],[data] (as json)
-		
+
 		$name = $this->getName();
 		$sourceURL = $val['sourceurl'];
 
 		$existingID = (int)$record->$name;
 
-		
+
 		$originalObject = EmbedObject::get()->byID($existingID);
 		if (!strlen($sourceURL)) {
 			$record->$name = 0;
@@ -117,10 +117,10 @@ class EmbedField extends FormField {
 		// write the new object
 		if ($object->ID == 0) {
 			$object->write();
-			
+
 		}
 		$this->object = $object;
-		
+
 		$record->$name = $this->object->ID;
 	}
 
@@ -177,7 +177,7 @@ class EmbedField extends FormField {
 						'Title' => $object->Title
 					)
 				));
-				 
+
 			} else {
 				return Convert::array2json(array(
 					'status' => 'invalidurl',
@@ -186,7 +186,7 @@ class EmbedField extends FormField {
 				));
 			}
 		}else{
-			
+
 			return Convert::array2json(array(
 				'status' => 'nourl',
 				'message' => '',
@@ -194,7 +194,7 @@ class EmbedField extends FormField {
 			));
 
 		}
-		
+
 	}
 
 }

@@ -16,7 +16,7 @@ class EmbedObject extends DataObject {
 		'ThumbnailURL' => 'Varchar(355)',
 		'ThumbnailWidth' => 'Int',
 		'ThumbnailHeight' => 'Int',
-		
+
 		'ProviderURL' => 'Varchar(255)',
 		'ProviderName' => 'Varchar(255)',
 
@@ -104,9 +104,9 @@ class EmbedObject extends DataObject {
 
 			return $array;
 		}
-		
 
-		
+
+
 	}
 
 	function onBeforeWrite() {

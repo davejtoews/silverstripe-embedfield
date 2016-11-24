@@ -51,7 +51,7 @@
 					'background-size':"auto",
 					'background-repeat':"no-repeat"
 				});
-				
+
 				$.post($(this).data('update-url'), params, function (response) {
 					$field.css('background-image', 'none');
 					var $messageEl = $('#'+$field.data('message-el-id'));
@@ -62,7 +62,7 @@
 						var data = response.data;
 						var $imageEl = $('#'+$field.data('thumbnail-id'));
 						$field.closest('.middleColumn').find('.embed-thumbnail').removeClass('empty').attr('href', $field.val());
-						
+
 						$imageEl.attr({
 							src: data.ThumbnailURL,
 							title: data.Title
