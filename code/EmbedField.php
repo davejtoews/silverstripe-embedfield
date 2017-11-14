@@ -30,8 +30,8 @@ class EmbedField extends FormField {
 	}
 
 	public function FieldHolder($properties = array()) {
-		Requirements::javascript('embedfield/javascript/EmbedField.js');
-		Requirements::css('embedfield/css/EmbedField.css');
+		Requirements::javascript(EMBED_FIELD_BASE . '/javascript/EmbedField.js');
+		Requirements::css(EMBED_FIELD_BASE . '/css/EmbedField.css');
 
 		if (!$this->object || $this->object->ID == 0) {
 			$this->object = EmbedObject::create();

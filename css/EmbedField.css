@@ -1,4 +1,3 @@
-
 .field.embed .middleColumn {
 	background: linear-gradient(#EFEFEF, #FFFFFF 10%, #FFFFFF 90%, #EFEFEF) repeat scroll 0 0 #FFFFFF;
   border: 1px solid #B3B3B3;
@@ -39,6 +38,10 @@
 
 .field.embed .fieldholder-small {
 	margin-left:115px;
+}
+
+.field.embed button.action {
+    margin: 8px 0;
 }
 
 .field.embed .clear {
