@@ -7,12 +7,16 @@
     <button 
         type="button"
         value="Add url"
-        class="action ss-ui-button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary"
+        class="action btn <% if $ThumbnailURL %>btn-outline-primary<% else %>btn-primary<% end_if %> cms-content-addpage-button tool-button <% if $ThumbnailURL %>font-icon-tick<% else %>font-icon-rocket<% end_if %>"
         data-icon="add"
         role="button"
-        aria-disabled="false">
-        <span class="ui-button-icon-primary ui-icon btn-icon-add"></span>
-        <span>Add url</span>
+        aria-disabled="false"
+        disabled="false">
+        <% if $ThumbnailURL %>
+            <span>Update URL</span>
+        <% else %>
+            <span>Add URL</span>
+        <% end_if %>
     </button>
 </div>
 <em id='{$ID}_message' class='embedfield-message'></em>

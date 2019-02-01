@@ -46,7 +46,7 @@ class EmbedField extends FormField {
 			$this->object = EmbedObject::create();
 		}
 
-		$properties['ThumbnailURL'] = 'framework/images/spacer.gif';
+		$properties['ThumbnailURL'] = false;
 		$properties['ThumbnailTitle'] = '';
 		$properties['ShowThumbnail'] = false;
 

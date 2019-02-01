@@ -16,6 +16,12 @@
                 }else {
                     this.parents('div.field').find('.field.embed button.action').prop('disabled', true).addClass('ui-state-disabled');
                 }
+
+                this.parent().parent().find('button.action').removeClass('btn-outline-primary');
+                this.parent().parent().find('button.action').removeClass('font-icon-tick');
+
+                this.parent().parent().find('button.action').addClass('btn-primary');
+                this.parent().parent().find('button.action').addClass('font-icon-rocket');
             },
 
 			onfocusout: function() {                
@@ -56,13 +62,9 @@
                     'SecurityID': $('input[name=SecurityID]').val(),
                     'URL': $field.val()
                 };
-               
-                $field.css({
-                    'background-image':"url('cms/images/network-save.gif')",
-                    'background-position':"98% center",
-                    'background-size':"auto",
-                    'background-repeat':"no-repeat"
-                });
+                
+                $field.closest('.form__field-holder').find('input.text').prop('disabled', true);
+                $field.closest('.form__field-holder').find('button').html('updating...');
 
                 $.post($field.data('update-url'), params, function (response) {
                     $field.css('background-image', 'none');
@@ -72,8 +74,17 @@
                     if (response.status == 'success') {
                         var data = response.data;
                         var $imageEl = $('#'+$field.parent().parent().find('img').attr('id'));
-                        //$field.closest('.middleColumn').find('.embed-thumbnail').removeClass('empty').attr('href', $field.val());
                         $field.closest('.form__field-holder').find('.embed-thumbnail').removeClass('empty').attr('href', $field.val());
+
+                        $field.closest('.form__field-holder').find('button').html('Update URL');
+
+                        $field.closest('.form__field-holder').find('button').removeClass('font-icon-rocket');
+                        $field.closest('.form__field-holder').find('button').removeClass('btn-primary');
+
+                        $field.closest('.form__field-holder').find('button').addClass('font-icon-tick');
+                        $field.closest('.form__field-holder').find('button').addClass('btn-outline-primary');
+
+                        $field.closest('.form__field-holder').find('input.text').prop('disabled', false);
 
                         $imageEl.attr({
                             src: data.ThumbnailURL,

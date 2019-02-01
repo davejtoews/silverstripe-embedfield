@@ -1,10 +1,10 @@
-.field.embed .middleColumn {
-	background: linear-gradient(#EFEFEF, #FFFFFF 10%, #FFFFFF 90%, #EFEFEF) repeat scroll 0 0 #FFFFFF;
-  border: 1px solid #B3B3B3;
-  border-radius: 4px;
-  padding: 0;
-  width: 480px;
-  padding:15px;
+.field.embed .form__field-holder {
+	background: #f1f3f6;
+	border: 1px solid #B3B3B3;
+	border-radius: 4px;
+	padding: 0;
+	width: 480px;
+	padding:15px;
 }
 
 .field.embed em {
@@ -41,7 +41,26 @@
 }
 
 .field.embed button.action {
-    margin: 8px 0;
+	margin-top: 10px;
+	cursor: pointer;
+	opacity: 1;
+}
+
+.field.embed button.action:not(.btn-outline-primary) {
+	background-color: #008a00;
+	border-color: #008a00;
+}
+
+.field.embed button.action:hover {
+	background-color: #e9f6e9;
+	cursor: not-allowed;  
+}
+
+.field.embed button.action:not(.btn-outline-primary):hover {
+	color: #fff;
+	background-color: #006400;
+	border-color: #005700;
+	cursor: pointer;
 }
 
 .field.embed .clear {
