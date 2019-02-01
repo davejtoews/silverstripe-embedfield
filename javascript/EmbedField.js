@@ -37,12 +37,12 @@
 			},
 
 			clearData: function() {
-				var $imageEl = $('#'+this.data('thumbnail-id'));
+				var $imageEl = $('#'+this.parent().parent().find('img').attr('id'));
 				$imageEl.attr({
 					src: 'framework/images/spacer.gif',
 					title: ''
 				});
-				this.closest('.middleColumn').find('.embed-thumbnail').addClass('empty').removeAttr('href');
+				this.closest('.form__field-holder').find('.embed-thumbnail').addClass('empty').removeAttr('href');
 				this.val('');
 			}            
 		});
