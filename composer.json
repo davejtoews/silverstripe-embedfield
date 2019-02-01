@@ -1,7 +1,7 @@
 {
 	"name": "nathancox/embedfield",
 	"description": "A form field for adding oembed objects (primarily videos) to pages or dataobjects",
-	"type": "silverstripe-module",
+	"type": "silverstripe-vendormodule",
 	"homepage": "https://github.com/nathancox/silverstripe-embedfield",
 	"keywords": ["silverstripe", "oembed", "video", "cms", "formfield"],
 	"license": "BSD-3-Clause",
