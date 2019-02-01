@@ -1,5 +1,7 @@
 <?php
 
+namespace nathancox\EmbedField\Forms;
+
 use SilverStripe\Forms\FormField;
 use SilverStripe\View\Requirements;
 use SilverStripe\Forms\TextField;
@@ -7,6 +9,7 @@ use SilverStripe\Control\HTTPRequest;
 use SilverStripe\Security\SecurityToken;
 use SilverStripe\Core\Convert;
 use SilverStripe\ORM\DataObjectInterface;
+use nathancox\EmbedField\Model\EmbedObject;
 
 /**
  * The form field used for creating EmbedObjects.  Basically you enter a URL and it fetches the oEmbed data from it and stores it in an EmbedObject.

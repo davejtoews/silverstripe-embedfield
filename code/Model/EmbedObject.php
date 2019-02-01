@@ -1,7 +1,8 @@
 <?php
 
+namespace nathancox\EmbedField\Model;
+
 use SilverStripe\ORM\DataObject;
-use Embed\Providers\OEmbed;
 use Embed\Embed;
 
 /**
@@ -34,6 +35,8 @@ class EmbedObject extends DataObject {
 		'Origin' => 'Varchar(355)',
 		'WebPage' => 'Varchar(355)'
 	);
+
+	private static $table_name='EmbedObject';
 
 	public $updateOnSave = false;
 
