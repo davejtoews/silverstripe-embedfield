@@ -70,10 +70,10 @@
                     $messageEl.html(response.message);
 
                     if (response.status == 'success') {
-
                         var data = response.data;
-                        var $imageEl = $('#'+$field.data('thumbnail-id'));
-                        $field.closest('.middleColumn').find('.embed-thumbnail').removeClass('empty').attr('href', $field.val());
+                        var $imageEl = $('#'+$field.parent().parent().find('img').attr('id'));
+                        //$field.closest('.middleColumn').find('.embed-thumbnail').removeClass('empty').attr('href', $field.val());
+                        $field.closest('.form__field-holder').find('.embed-thumbnail').removeClass('empty').attr('href', $field.val());
 
                         $imageEl.attr({
                             src: data.ThumbnailURL,

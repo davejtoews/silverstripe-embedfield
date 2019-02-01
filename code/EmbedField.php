@@ -1,4 +1,13 @@
 <?php
+
+use SilverStripe\Forms\FormField;
+use SilverStripe\View\Requirements;
+use SilverStripe\Forms\TextField;
+use SilverStripe\Control\HTTPRequest;
+use SilverStripe\Security\SecurityToken;
+use SilverStripe\Core\Convert;
+use SilverStripe\ORM\DataObjectInterface;
+
 /**
  * The form field used for creating EmbedObjects.  Basically you enter a URL and it fetches the oEmbed data from it and stores it in an EmbedObject.
  */
@@ -30,8 +39,8 @@ class EmbedField extends FormField {
 	}
 
 	public function FieldHolder($properties = array()) {
-		Requirements::javascript(EMBED_FIELD_BASE . '/javascript/EmbedField.js');
-		Requirements::css(EMBED_FIELD_BASE . '/css/EmbedField.css');
+		Requirements::javascript('nathancox/embedfield: javascript/EmbedField.js');
+		Requirements::css('nathancox/embedfield: css/EmbedField.css');
 
 		if (!$this->object || $this->object->ID == 0) {
 			$this->object = EmbedObject::create();
@@ -62,25 +71,27 @@ class EmbedField extends FormField {
 		return 'embed text';
 	}
 
-	public function setValue($value) {
-
+	public function setValue($value, $data = null) {
+        
 		if ($value instanceof EmbedObject) {
 			$this->object = $value;
 			parent::setValue($object->ID);
+            
 		}
 		$this->object = EmbedObject::get()->byID($value);
+        
 		parent::setValue($value);
 	}
 
 
 	public function saveInto(DataObjectInterface $record) {
+        
 		$val = $this->Value();		// array[sourceurl],[data] (as json)
 
 		$name = $this->getName();
 		$sourceURL = $val['sourceurl'];
 
 		$existingID = (int)$record->$name;
-
 
 		$originalObject = EmbedObject::get()->byID($existingID);
 		if (!strlen($sourceURL)) {
@@ -127,7 +138,8 @@ class EmbedField extends FormField {
 	/**
 	 * This is called by the javascript
 	 */
-	public function update(SS_HTTPRequest $request) {
+	public function update(HTTPRequest $request) {
+        
 		if (!SecurityToken::inst()->checkRequest($request)) {
 			return '';
 		}
