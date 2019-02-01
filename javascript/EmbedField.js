@@ -7,7 +7,9 @@
 			onmatch: function() {
 				this.data('original-value', this.val());
 				this.data('thumbnail-id', this.closest('.form__field-holder').find('img').attr('id'));
-				this.data('message-el-id', this.closest('.form__field-holder').find('em').attr('id'));
+                this.data('message-el-id', this.closest('.form__field-holder').find('em').attr('id'));
+                
+                this.closest('.form__field-holder').find('a.embed-thumbnail').attr('href',$(this).val());
 			},
 
             onchange: function(){
@@ -82,6 +84,7 @@
                             title: data.Title
                         });
                     } else if (response.status == 'invalidurl' || response.status == 'nourl') {
+                        $field.val($field.data('original-value'));
                         $field.closest('.form__field-holder').find('input.text').prop('disabled', false).addClass('error');
                         $field.closest('.form__field-holder').find('button').addClass('font-icon-rocket').addClass('btn-primary').removeClass('font-icon-tick').removeClass('btn-outline-primary').html('Update URL');
                     } else {
