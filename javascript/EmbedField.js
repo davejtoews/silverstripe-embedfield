@@ -39,7 +39,7 @@
 			clearData: function() {
 				var $imageEl = $('#'+this.parent().parent().find('img').attr('id'));
 				$imageEl.attr({
-					src: 'framework/images/spacer.gif',
+					src: '',
 					title: ''
 				});
 				this.closest('.form__field-holder').find('.embed-thumbnail').addClass('empty').removeAttr('href');

@@ -47,8 +47,6 @@
 
 .field.embed button.action {
 	margin-top: 10px;
-	cursor: pointer;
-	opacity: 1;
 }
 
 .field.embed button.action:not(.btn-outline-primary) {
@@ -63,7 +61,6 @@
 
 .field.embed button.action:hover {
 	background-color: #e9f6e9;
-	cursor: not-allowed;  
 }
 
 .field.embed button.action:not(.btn-outline-primary):hover {
