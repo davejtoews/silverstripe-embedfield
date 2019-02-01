@@ -6,8 +6,8 @@
 		$('.field.embed input.text').entwine({
 			onmatch: function() {
 				this.data('original-value', this.val());
-				this.data('thumbnail-id', this.closest('.middleColumn').find('img').attr('id'));
-				this.data('message-el-id', this.closest('.middleColumn').find('em').attr('id'));
+				this.data('thumbnail-id', this.closest('.form__field-holder').find('img').attr('id'));
+				this.data('message-el-id', this.closest('.form__field-holder').find('em').attr('id'));
 			},
 
             onchange: function(){
@@ -37,7 +37,7 @@
 			},
 
 			clearData: function() {
-				var $imageEl = $('#'+this.parent().parent().find('img').attr('id'));
+				var $imageEl = $('#'+this.data('thumbnail-id'));
 				$imageEl.attr({
 					src: '',
 					title: ''
@@ -71,7 +71,7 @@
                     
                     if (response.status == 'success') {
                         var data = response.data;
-                        var $imageEl = $('#'+$field.parent().parent().find('img').attr('id'));
+                        var $imageEl = $('#'+$field.data('thumbnail-id'));
 
                         $field.closest('.form__field-holder').find('.embed-thumbnail').removeClass('empty').attr('href', $field.val());
                         $field.closest('.form__field-holder').find('button').html('Update URL').removeClass('font-icon-rocket').removeClass('btn-primary').addClass('font-icon-tick').addClass('btn-outline-primary');
