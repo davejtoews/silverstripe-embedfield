@@ -30,7 +30,6 @@ class EmbedObject extends DataObject {
 		'AuthorName' => 'Varchar(255)',
 
 		'EmbedHTML' => 'HTMLText',
-		'HTML' => 'HTMLText',
 		'URL' => 'Varchar(355)',
 		'Origin' => 'Varchar(355)',
 		'WebPage' => 'Varchar(355)'
@@ -59,7 +58,7 @@ class EmbedObject extends DataObject {
 	function updateFromObject($info) {
 		if ($info && $info->getWidth()) {
 			$this->sourceExists = true;
-
+			
 			$this->Title = $info->getTitle();
 			$this->Type = $info->type;
 
@@ -79,10 +78,9 @@ class EmbedObject extends DataObject {
 
 			$embed = $info->getCode();
 			$this->EmbedHTML = $embed;
-			// $this->HTML = $info->html;
-			// $this->URL = $info->url;
-			// $this->Origin = $info->origin;
-			// $this->WebPage = $info->web_page;
+			$this->URL = $info->url;
+			$this->Origin = $info->origin;
+			$this->WebPage = $info->web_page;
 
 		} else {
 			$this->sourceExists = false;
