@@ -57,7 +57,7 @@ namespace {
 
 Gives us:
 
-![example embedfield](https://ibb.co/s6wj2sb)
+![example embedfield](https://i.ibb.co/Hxz7VGB/embedfield.jpg)
 
 
 In the page template the video can now be embedded with `$MyVideo`.
