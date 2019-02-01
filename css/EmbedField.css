@@ -51,6 +51,11 @@
 	border-color: #008a00;
 }
 
+.field.embed input.text.error {
+	border-color: #ff00004d;
+	background-color: #ff00001a;
+}
+
 .field.embed button.action:hover {
 	background-color: #e9f6e9;
 	cursor: not-allowed;  

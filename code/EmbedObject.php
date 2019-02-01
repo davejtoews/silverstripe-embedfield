@@ -54,8 +54,7 @@ class EmbedObject extends DataObject {
 	}
 
 	function updateFromObject($info) {
-
-		if ($info) {
+		if ($info && $info->getWidth()) {
 			$this->sourceExists = true;
 
 			$this->Title = $info->getTitle();
