@@ -8,8 +8,9 @@
 				this.data('original-value', this.val());
 				this.data('thumbnail-id', this.closest('.form__field-holder').find('img').attr('id'));
                 this.data('message-el-id', this.closest('.form__field-holder').find('em').attr('id'));
-                
-                this.closest('.form__field-holder').find('a.embed-thumbnail').attr('href',$(this).val());
+                if (!newVal == '') {
+                    this.closest('.form__field-holder').find('a.embed-thumbnail').attr('href',$(this).val());
+                }
 			},
 
             onchange: function(){
