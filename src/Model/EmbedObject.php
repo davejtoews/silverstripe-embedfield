@@ -1,10 +1,16 @@
 <?php
+
+namespace nathancox\EmbedField\Model;
+
+use SilverStripe\ORM\DataObject;
+use Embed\Embed;
+
 /**
  * Represents an oembed object.  Basically populated from oembed so the front end has quick access to properties.
  */
 class EmbedObject extends DataObject {
 
-	static $db = array(
+	private static $db = array(
 		'SourceURL' => 'Varchar(255)',
 		'Title' => 'Varchar(255)',
 		'Type' => 'Varchar(255)',
@@ -24,11 +30,12 @@ class EmbedObject extends DataObject {
 		'AuthorName' => 'Varchar(255)',
 
 		'EmbedHTML' => 'HTMLText',
-		'HTML' => 'HTMLText',
 		'URL' => 'Varchar(355)',
 		'Origin' => 'Varchar(355)',
 		'WebPage' => 'Varchar(355)'
 	);
+
+	private static $table_name='EmbedObject';
 
 	public $updateOnSave = false;
 
@@ -42,23 +49,23 @@ class EmbedObject extends DataObject {
 		if ($this->SourceURL) {
 			$sourceURL = $this->SourceURL;
 		}
-		$info = Oembed::get_oembed_from_url($sourceURL);
+		$info = Embed::create($sourceURL);
+		//Oembed::get_oembed_from_url($sourceURL);
 
 		$this->updateFromObject($info);
 	}
 
-	function updateFromObject(Oembed_Result $info) {
-
-		if ($info && $info->exists()) {
+	function updateFromObject($info) {
+		if ($info && $info->getWidth()) {
 			$this->sourceExists = true;
-
-			$this->Title = $info->title;
+			
+			$this->Title = $info->getTitle();
 			$this->Type = $info->type;
 
-			$this->Width = $info->width;
-			$this->Height = $info->height;
+			$this->Width = $info->getWidth();
+			$this->Height = $info->getHeight();
 
-			$this->ThumbnailURL = $info->thumbnail_url;
+			$this->ThumbnailURL = $info->getImage();
 			$this->ThumbnailWidth = $info->thumbnail_width;
 			$this->ThumbnailHeight = $info->thumbnail_height;
 
@@ -69,9 +76,8 @@ class EmbedObject extends DataObject {
 			$this->AuthorURL = $info->author_url;
 			$this->AuthorName = $info->author_name;
 
-
-			$this->EmbedHTML = $info->forTemplate();
-			$this->HTML = $info->html;
+			$embed = $info->getCode();
+			$this->EmbedHTML = $embed;
 			$this->URL = $info->url;
 			$this->Origin = $info->origin;
 			$this->WebPage = $info->web_page;
@@ -79,10 +85,6 @@ class EmbedObject extends DataObject {
 		} else {
 			$this->sourceExists = false;
 		}
-
-
-
-
 	}
 
 	/**
