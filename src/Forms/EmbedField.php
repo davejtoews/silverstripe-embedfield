@@ -78,7 +78,7 @@ class EmbedField extends FormField {
         
 		if ($value instanceof EmbedObject) {
 			$this->object = $value;
-			parent::setValue($object->ID);
+			parent::setValue($this->object->ID);
             
 		}
 		$this->object = EmbedObject::get()->byID($value);
