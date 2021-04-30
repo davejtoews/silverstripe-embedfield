@@ -1,10 +1,7 @@
 .field.embed .form__field-holder {
-	background: #f1f3f6;
-	border: 1px solid #B3B3B3;
 	border-radius: 4px;
-	padding: 0;
-	width: 480px;
-	padding:15px;
+	padding: initial;
+	width: initial;
 }
 
 .field.embed img {
@@ -21,8 +18,8 @@
 }
 
 .field.embed .embed-thumbnail {
-	width:100px;
-	min-height:70px;
+	width: 113px;
+	min-height: 79px;
 	float:left;
 	display:inline-block;
 
@@ -42,11 +39,11 @@
 
 
 .field.embed .fieldholder-small {
-	margin-left:115px;
+	margin-left: 130px;
 }
 
 .field.embed button.action {
-	margin-top: 10px;
+	margin-top: 16px;
 }
 
 .field.embed button.action:not(.btn-outline-primary) {
