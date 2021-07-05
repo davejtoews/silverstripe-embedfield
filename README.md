@@ -69,7 +69,7 @@ themes/mytheme/templates/nathancox/EmbedField/Model/EmbedObject_video.ss:
 ```html
 
 	<div class='flex-video self-sizing' style='padding-bottom:$AspectRatioHeight;'>
-		$HTML
+		$EmbedHTML
 	</div>
 
 ```
