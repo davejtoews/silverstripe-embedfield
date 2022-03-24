@@ -21,7 +21,7 @@ Documentation
 Installation Instructions
 -------------------------
 
-1. Place the files in a directory called mapfield in the root of your SilverStripe installation
+1. Install with composer `composer require nathancox/embedfield`
 2. Visit yoursite.com/dev/build to rebuild the database
 
 Usage Overview
