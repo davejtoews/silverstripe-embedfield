@@ -49,8 +49,8 @@ class EmbedObject extends DataObject {
 		if ($this->SourceURL) {
 			$sourceURL = $this->SourceURL;
 		}
-        $embed = new Embed();
-        $info = $embed->get($sourceURL);
+		$embed = new Embed();
+		$info = $embed->get($sourceURL);
 		//Oembed::get_oembed_from_url($sourceURL);
 
 		$this->updateFromObject($info);
@@ -67,7 +67,7 @@ class EmbedObject extends DataObject {
 
 			// Several properties no longer supported. These can potentially be re-introduced
 			// by writing custom detectors: https://github.com/oscarotero/Embed#detectors
-			
+		
 			//$this->Type = $info->type;
 
 			//$this->Width = $info->getWidth();
