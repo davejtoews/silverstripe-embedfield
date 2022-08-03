@@ -49,38 +49,46 @@ class EmbedObject extends DataObject {
 		if ($this->SourceURL) {
 			$sourceURL = $this->SourceURL;
 		}
-		$info = Embed::create($sourceURL);
+        $embed = new Embed();
+        $info = $embed->get($sourceURL);
 		//Oembed::get_oembed_from_url($sourceURL);
 
 		$this->updateFromObject($info);
 	}
 
 	function updateFromObject($info) {
-		if ($info && $info->getWidth()) {
+		// Previously this line checked width. Unsure if this was just to
+		// check if object was populated, or if width was of specific importence
+		// Assuming the former and checking URL instead
+		if ($info && $info->url) {
 			$this->sourceExists = true;
+
+			$this->Title = $info->title;
+
+			// Several properties no longer supported. These can potentially be re-introduced
+			// by writing custom detectors: https://github.com/oscarotero/Embed#detectors
 			
-			$this->Title = $info->getTitle();
-			$this->Type = $info->type;
+			//$this->Type = $info->type;
 
-			$this->Width = $info->getWidth();
-			$this->Height = $info->getHeight();
+			//$this->Width = $info->getWidth();
+			//$this->Height = $info->getHeight();
 
-			$this->ThumbnailURL = $info->getImage();
-			$this->ThumbnailWidth = $info->thumbnail_width;
-			$this->ThumbnailHeight = $info->thumbnail_height;
+			//$this->ThumbnailURL = $info->getImage();
+			//$this->ThumbnailWidth = $info->thumbnail_width;
+			//$this->ThumbnailHeight = $info->thumbnail_height;
 
-			$this->ProviderURL = $info->provider_url;
-			$this->ProviderName = $info->provider_name;
+			$this->ProviderURL = (string) $info->providerUrl;
+			$this->ProviderName = $info->providerName;
 
 
-			$this->AuthorURL = $info->author_url;
-			$this->AuthorName = $info->author_name;
+			$this->AuthorURL = (string) $info->authorUrl;
+			$this->AuthorName = $info->authorName;
 
-			$embed = $info->getCode();
-			$this->EmbedHTML = $embed;
-			$this->URL = $info->url;
-			$this->Origin = $info->origin;
-			$this->WebPage = $info->web_page;
+			$embed = $info->code;
+			$this->EmbedHTML = (string) $embed;
+			$this->URL = (string) $info->url;
+			//$this->Origin = $info->origin;
+			//$this->WebPage = $info->web_page;
 
 		} else {
 			$this->sourceExists = false;
