@@ -12,6 +12,7 @@
 		"issues": "https://github.com/nathancox/silverstripe-embedfield/issues"
 	},
 	"require": {
+		"embed/embed": "^4",
 		"silverstripe/framework": "~4.0"
 	},
 	"extra": {
