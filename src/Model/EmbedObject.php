@@ -61,19 +61,22 @@ class EmbedObject extends DataObject {
 		// check if object was populated, or if width was of specific importence
 		// Assuming the former and checking URL instead
 		if ($info && $info->url) {
-			$this->sourceExists = true;
+            $this->sourceExists = true;
 
 			$this->Title = $info->title;
 
 			// Several properties no longer supported. These can potentially be re-introduced
 			// by writing custom detectors: https://github.com/oscarotero/Embed#detectors
 
-			$this->ThumbnailURL = (string) $info->image;
+            $this->Type = $info->getOEmbed()->get('type') ? (string) $info->getOEmbed()->get('type') : '';
+            $this->Width = $info->getOEmbed()->get('width') ? (string) $info->getOEmbed()->get('width') : '';
+            $this->Height = $info->getOEmbed()->get('height') ? (string) $info->getOEmbed()->get('height') : '';
+
+            $this->ThumbnailURL = (string) $info->image;
 			$this->ThumbnailWidth = $info->getOEmbed()->get('thumbnail_width') ? (string) $info->getOEmbed()->get('thumbnail_width') : '';
 			$this->ThumbnailHeight = $info->getOEmbed()->get('thumbnail_height') ? (string) $info->getOEmbed()->get('thumbnail_height') : '';
-            $metas = $info->getMetas();
 
-			$this->ProviderURL = (string) $info->providerUrl;
+            $this->ProviderURL = (string) $info->providerUrl;
 			$this->ProviderName = $info->providerName;
 
 
