@@ -67,15 +67,11 @@ class EmbedObject extends DataObject {
 
 			// Several properties no longer supported. These can potentially be re-introduced
 			// by writing custom detectors: https://github.com/oscarotero/Embed#detectors
-		
-			//$this->Type = $info->type;
 
-			//$this->Width = $info->getWidth();
-			//$this->Height = $info->getHeight();
-
-			//$this->ThumbnailURL = $info->getImage();
-			//$this->ThumbnailWidth = $info->thumbnail_width;
-			//$this->ThumbnailHeight = $info->thumbnail_height;
+			$this->ThumbnailURL = (string) $info->image;
+			$this->ThumbnailWidth = $info->getOEmbed()->get('thumbnail_width') ? (string) $info->getOEmbed()->get('thumbnail_width') : '';
+			$this->ThumbnailHeight = $info->getOEmbed()->get('thumbnail_height') ? (string) $info->getOEmbed()->get('thumbnail_height') : '';
+            $metas = $info->getMetas();
 
 			$this->ProviderURL = (string) $info->providerUrl;
 			$this->ProviderName = $info->providerName;
@@ -87,8 +83,8 @@ class EmbedObject extends DataObject {
 			$embed = $info->code;
 			$this->EmbedHTML = (string) $embed;
 			$this->URL = (string) $info->url;
-			//$this->Origin = $info->origin;
-			//$this->WebPage = $info->web_page;
+			$this->Origin = (string) $info->providerUrl;
+			$this->WebPage = (string) $info->url;
 
 		} else {
 			$this->sourceExists = false;
