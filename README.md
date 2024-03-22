@@ -12,7 +12,7 @@ Nathan Cox (<me@nathan.net.nz>)
 
 Requirements
 ------------
-* SilverStripe 4.0+
+* SilverStripe 4.11+ or 5.x
 
 Documentation
 -------------
