@@ -51,22 +51,15 @@ class EmbedObject extends DataObject {
 		}
 		$embed = new Embed();
 		$info = $embed->get($sourceURL);
-		//Oembed::get_oembed_from_url($sourceURL);
 
 		$this->updateFromObject($info);
 	}
 
 	function updateFromObject($info) {
-		// Previously this line checked width. Unsure if this was just to
-		// check if object was populated, or if width was of specific importence
-		// Assuming the former and checking URL instead
 		if ($info && $info->url) {
             $this->sourceExists = true;
 
 			$this->Title = $info->title;
-
-			// Several properties no longer supported. These can potentially be re-introduced
-			// by writing custom detectors: https://github.com/oscarotero/Embed#detectors
 
             $this->Type = $info->getOEmbed()->get('type') ? (string) $info->getOEmbed()->get('type') : '';
             $this->Width = $info->getOEmbed()->get('width') ? (string) $info->getOEmbed()->get('width') : '';
@@ -78,7 +71,6 @@ class EmbedObject extends DataObject {
 
             $this->ProviderURL = (string) $info->providerUrl;
 			$this->ProviderName = $info->providerName;
-
 
 			$this->AuthorURL = (string) $info->authorUrl;
 			$this->AuthorName = $info->authorName;
