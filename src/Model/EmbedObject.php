@@ -49,38 +49,37 @@ class EmbedObject extends DataObject {
 		if ($this->SourceURL) {
 			$sourceURL = $this->SourceURL;
 		}
-		$info = Embed::create($sourceURL);
-		//Oembed::get_oembed_from_url($sourceURL);
+		$embed = new Embed();
+		$info = $embed->get($sourceURL);
 
 		$this->updateFromObject($info);
 	}
 
 	function updateFromObject($info) {
-		if ($info && $info->getWidth()) {
-			$this->sourceExists = true;
-			
-			$this->Title = $info->getTitle();
-			$this->Type = $info->type;
+		if ($info && $info->url) {
+            $this->sourceExists = true;
 
-			$this->Width = $info->getWidth();
-			$this->Height = $info->getHeight();
+			$this->Title = $info->title;
 
-			$this->ThumbnailURL = $info->getImage();
-			$this->ThumbnailWidth = $info->thumbnail_width;
-			$this->ThumbnailHeight = $info->thumbnail_height;
+            $this->Type = $info->getOEmbed()->get('type') ? (string) $info->getOEmbed()->get('type') : '';
+            $this->Width = $info->getOEmbed()->get('width') ? (string) $info->getOEmbed()->get('width') : '';
+            $this->Height = $info->getOEmbed()->get('height') ? (string) $info->getOEmbed()->get('height') : '';
 
-			$this->ProviderURL = $info->provider_url;
-			$this->ProviderName = $info->provider_name;
+            $this->ThumbnailURL = (string) $info->image;
+			$this->ThumbnailWidth = $info->getOEmbed()->get('thumbnail_width') ? (string) $info->getOEmbed()->get('thumbnail_width') : '';
+			$this->ThumbnailHeight = $info->getOEmbed()->get('thumbnail_height') ? (string) $info->getOEmbed()->get('thumbnail_height') : '';
 
+            $this->ProviderURL = (string) $info->providerUrl;
+			$this->ProviderName = $info->providerName;
 
-			$this->AuthorURL = $info->author_url;
-			$this->AuthorName = $info->author_name;
+			$this->AuthorURL = (string) $info->authorUrl;
+			$this->AuthorName = $info->authorName;
 
-			$embed = $info->getCode();
-			$this->EmbedHTML = $embed;
-			$this->URL = $info->url;
-			$this->Origin = $info->origin;
-			$this->WebPage = $info->web_page;
+			$embed = $info->code;
+			$this->EmbedHTML = (string) $embed;
+			$this->URL = (string) $info->url;
+			$this->Origin = (string) $info->providerUrl;
+			$this->WebPage = (string) $info->url;
 
 		} else {
 			$this->sourceExists = false;
