@@ -7,7 +7,6 @@ use SilverStripe\View\Requirements;
 use SilverStripe\Forms\TextField;
 use SilverStripe\Control\HTTPRequest;
 use SilverStripe\Security\SecurityToken;
-use SilverStripe\Core\Convert;
 use SilverStripe\ORM\DataObjectInterface;
 use nathancox\EmbedField\Model\EmbedObject;
 
@@ -75,20 +74,20 @@ class EmbedField extends FormField {
 	}
 
 	public function setValue($value, $data = null) {
-        
+
 		if ($value instanceof EmbedObject) {
 			$this->object = $value;
 			parent::setValue($this->object->ID);
-            
+
 		}
 		$this->object = EmbedObject::get()->byID($value);
-        
+
 		parent::setValue($value);
 	}
 
 
 	public function saveInto(DataObjectInterface $record) {
-        
+
 		$val = $this->Value();		// array[sourceurl],[data] (as json)
 
 		$name = $this->getName();
@@ -142,7 +141,7 @@ class EmbedField extends FormField {
 	 * This is called by the javascript
 	 */
 	public function update(HTTPRequest $request) {
-        
+
 		if (!SecurityToken::inst()->checkRequest($request)) {
 			return '';
 		}
@@ -175,14 +174,14 @@ class EmbedField extends FormField {
 			if ($object && $object->sourceExists()) {
 
 				if ($this->embedType && $this->embedType != $object->Type) {
-					return Convert::array2json(array(
+					return json_encode(array(
 						'status' => 'invalidurl',
 						'message' => '<a href="'.$sourceURL.'" target="_blank">' . $sourceURL . '</a> is not a valid source type.',
 						'data' => array()
 					));
 				}
 
-				return Convert::array2json(array(
+				return json_encode(array(
 					'status' => 'success',
 					'message' => '',
 					'data' => array(
@@ -194,7 +193,7 @@ class EmbedField extends FormField {
 				));
 
 			} else {
-				return Convert::array2json(array(
+				return json_encode(array(
 					'status' => 'invalidurl',
 					'message' => '<a href="'.$sourceURL.'" target="_blank">' . $sourceURL . '</a> is not a valid embed source.',
 					'data' => array()
@@ -202,7 +201,7 @@ class EmbedField extends FormField {
 			}
 		}else{
 
-			return Convert::array2json(array(
+			return json_encode(array(
 				'status' => 'nourl',
 				'message' => '',
 				'data' => array()
