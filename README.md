@@ -5,11 +5,6 @@ This field is designed to let users attached an oembed object (eg a YouTube vide
 
 Work in progress.
 
-
-Maintainer Contacts
--------------------
-Nathan Cox (<me@nathan.net.nz>)
-
 Requirements
 ------------
 * SilverStripe 4.11+ or 5.x
